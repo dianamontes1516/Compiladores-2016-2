@@ -8,4 +8,4 @@ DIGIT		=       [0-9]
 CERO           =        0
 %%
 123						{System.out.println("123");}
-{CERO} | {NNDIGIT}{DIGIT}+ { System.out.println("INTEGER("+yytext()+")");}
+ vc{CERO} | {NNDIGIT}{DIGIT}+ { System.out.println("INTEGER("+yytext()+")");}
