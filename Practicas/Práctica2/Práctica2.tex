@@ -1,0 +1,117 @@
+% Created 2016-09-08 jue 16:13
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\author{Elisa Viso Gurovich}
+\date{\today}
+\title{Práctica 2: Analizadores sintácticos.\\\medskip
+\large Compiladores 2017-1}
+\hypersetup{
+ pdfauthor={Elisa Viso Gurovich},
+ pdftitle={Práctica 2: Analizadores sintácticos.},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 24.5.1 (Org mode 8.3.4)}, 
+ pdflang={English}}
+\begin{document}
+
+\maketitle
+
+\section{Analizadores sintácticos descendentes (\emph{Top-Down})}
+\label{sec:orgheadline1}
+\begin{itemize}
+\item Ejercicios teóricos:
+\begin{enumerate}
+\item ¿Cuales són las maneras de implementar un analizador sintáctico descendente?
+\item ¿Que carácterísticas debe de cumplir una gramática libre del contexto para
+que pueden tener un reconocedor descendente recursivo sin caer en ciclos 
+ni hacer backtrack?
+\item Implementa un anlizador sintáctico para la siguiente gramática:
+\begin{verbatim}
+S -> Aa | b
+A -> Ac | Sd | epsilon
+\end{verbatim}
+No debe caer en ciclos ni hacer backtrack.
+\end{enumerate}
+\end{itemize}
+
+
+\section{Analizadores Sintácticos ascendentes (\emph{Bottom-UP})}
+\label{sec:orgheadline2}
+\begin{itemize}
+\item Instalación de \textbf{Byacc/J}
+\begin{enumerate}
+\item Descargar binario de \url{http://byaccj.sourceforge.net/#download}
+\item Instalar bibliotecas de compatibilidad con software para arquitectura de 32 bits.
+\url{http://askubuntu.com/questions/454253/how-to-run-32-bit-app-in-ubuntu-64-bit} . 
+En algunos sistemas operativos ya están instaladas.
+\item Descomprimir tar.gz
+\item Hasta aquí ya tiene un binario que puede ser ejecutado como cualquier otro binario.
+La sugerencia es pasarlo a algún lugar en el PATH para que puedan ejecutarlo desde
+cualquier ruta. 
+\begin{verbatim}
+$ cp yacc.linux /usr/bin/byacc
+$ byacc
+\end{verbatim}
+\end{enumerate}
+
+\item Ejercicios:
+\begin{enumerate}
+\item Implementa un intérprete para cada una de las siguientes dos gramáticas. Utiliza
+\textbf{byacc} y \textbf{jflex}.
+\begin{itemize}
+\item Gramática 1 
+\begin{verbatim}
+E -> E + T
+    | E - T
+    | T
+T -> T * F
+    | T / F
+    | F
+ F -> NUMBER   
+     | - NUMBER
+\end{verbatim}
+\item Gramatica 2
+\begin{verbatim}
+E -> T + E
+    | T - E
+    | T
+T -> F * T
+    | F / T
+    | F
+ F -> NUMBER   
+     | - NUMBER
+\end{verbatim}
+\end{itemize}
+\item Encuentra a manera de imprimir la pilas de reconocimiento cada que se hace una reducción.
+\item ¿Qué resultado da la evaluación de la expresión \textbf{3-2+8}? Explica el motivo de los resultados.
+\end{enumerate}
+\end{itemize}
+
+\section{Administrativos:}
+\label{sec:orgheadline3}
+\begin{enumerate}
+\item Se deberá crear una nueva carpeta \textbf{REPO/Prácticas/Práctica2} con los siguientes
+archivos.
+\begin{itemize}
+\item tokens.l : script que hará el analizador léxico.
+\item arith-left.y : script con las reglas de la gramática 1.
+\item arith-rigth.y : script con las reglas de la gramática 2.
+\item make: tendrá dos tags right y left. Permitirá introducir un archivo para prueba.
+\item README.md : archivo que contendrá las respuestas de los ejercicios teóricos.
+\end{itemize}
+\item Se entregará antes del 23.09.16
+\end{enumerate}
+\end{document}
