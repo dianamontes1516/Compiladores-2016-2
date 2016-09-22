@@ -1,0 +1,11 @@
+stmt: (NEWLINE | simple_stmt )* ENDMARKER
+simple_stmt: small_stmt  NEWLINE
+small_stmt: expr_stmt | print_stmt 
+expr_stmt: test ['=' test]
+print_stmt: 'print' [test]  
+
+test: term (('+'|'-') term)*
+term: factor (('*'|'/'|'%'|'//') factor)*
+factor: ('+'|'-') factor | power
+power: atom ['**' factor]
+atom: NAME | INTEGER | STRING | FLOAT | BOOLEAN	
