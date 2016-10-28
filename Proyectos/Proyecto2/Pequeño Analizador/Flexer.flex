@@ -8,6 +8,7 @@ import java.util.Arrays;
 %public
 %class Flexer
 %byaccj
+%debug
 %line
 %state INDENT CADENA DEDENT NORMAL EOF
 %unicode
@@ -62,7 +63,7 @@ import java.util.Arrays;
             pila.push(espacios);
 	    yybegin(NORMAL);
             indents = 1;
-        }
+        }else yybegin(NORMAL);
     }
 %}
 PUNTO			=	\.
@@ -129,12 +130,12 @@ BOOLEAN		=	("True" | "False")
   \t                             	{ actual += 4;}
   .                               	{ yypushback(1); 
                                          this.indentacion(actual);
-					 yybegin(NORMAL);
+					 //yybegin(NORMAL);
 					 if(indents == 1){
 					    indents = 0;
 					    return Parser.INDENT;
 					 }
-					 
+					  
 					}
 }
 <<EOF>>                                 {this.indentacion(0);

@@ -1,0 +1,45 @@
+   0  $accept : Start $end
+
+   1  Start : List
+
+   2  List : ELT
+   3       | List ELT
+
+state 0
+	$accept : . Start $end  (0)
+
+	ELT  shift 1
+	.  error
+
+	Start  goto 2
+	List  goto 3
+
+
+state 1
+	List : ELT .  (2)
+
+	.  reduce 2
+
+
+state 2
+	$accept : Start . $end  (0)
+
+	$end  accept
+
+
+state 3
+	Start : List .  (1)
+	List : List . ELT  (3)
+
+	ELT  shift 4
+	$end  reduce 1
+
+
+state 4
+	List : List ELT .  (3)
+
+	.  reduce 3
+
+
+3 terminals, 3 nonterminals
+4 grammar rules, 5 states

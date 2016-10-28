@@ -37,7 +37,7 @@ public void yyerror (String error) {
 /* lexer is created in the constructor */
 public Parser(Reader r) {
     lexer = new List(r, this);
-    yydebug = true;
+    //yydebug = true;
 }
 
 /* that's how you use the parser */
